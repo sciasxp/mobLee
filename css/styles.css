@@ -1,0 +1,4 @@
+//To secure correct behavior in older browsers
+header, section, footer, aside, nav, main, article, figure {
+    display: block;
+}

@@ -1,15 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 
-<html lang="pt">
+<html lang="pt-BR">
 
 <head>
-  <meta charset="utf-8">
+	<meta charset="utf-8" />
+	<title>mobLee GraphQL Challenge</title>
+  <meta name="description" content="mobLee GrapthQL Challenge" />
+  <meta name="author" content="Luciano Nunes" />
 
-  <title>mobLee GraphQL Challenge</title>
-  <meta name="description" content="mobLee GrapthQL Challenge">
-  <meta name="author" content="Luciano Nunes">
-
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="css/styles.css?v=1.0" />
 
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -17,37 +16,37 @@
 </head>
 
 <body>
+	<header id="main-header">
+		<h1>StackOverflow</h1>
+	</header>
 	
-	<h1>StackOverflow</h1>
-	
-	<dir>
+	<main id="main">
 		<h2>Buscar na API</h2>	
 
-		<div>
-			
+		<form>
 			<div>
 				<label>Tag</label>
-				<input type="text" name="tag">
+				<input type="text" name="tag" placeholder="Javascript" />
 			</div>
-			
 			<div>
 				<label>Limit</label>
-				<input type="text" name="limit">
+				<input type="number" name="limit" />
 			</div>
-
 			<div>
 				<label>Score</label>
-				<input type="text" name="score">
+				<input type="number" name="score" />
 			</div>
-
 			<div>
 				<label>Sort</label>
-				<input type="text" name="sort">
+				<input type="text" name="sort" />
 			</div>
+			<input type="submit" name="search" value="Buscar" />
+		</form>
+	</main>
 
-			<p><button>Buscar</button></p>
-		</div>
-	</dir>
+	<footer id="main-footer">
+		<p>Copyright &copy 2018, Luciano Nunes</p>
+	</footer>
 
   <script src="js/scripts.js"></script>
 </body>
