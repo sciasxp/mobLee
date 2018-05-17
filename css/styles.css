@@ -1,4 +1,62 @@
-//To secure correct behavior in older browsers
+/*To secure correct behavior in older browsers*/
 header, section, footer, aside, nav, main, article, figure {
-    display: block;
+	display: block;
+}
+
+body {
+	font-family: sans-serif;
+	margin: 15px;
+}
+
+#main-header {
+	font-style: oblique;
+	margin: 10px 0px 20px 0px;
+}
+
+main {
+	background-color: #E6E6E6;
+	color: #6F6F6F;
+	box-shadow: 0px 3px #CECECE;
+	padding: 20px
+}
+
+.form-title {
+	font-style: oblique;
+	margin: 0px 0px 20px 0px;
+}
+
+label {
+	font-size: 	1.2em;
+	margin: 20px 0px 0px 0px;
+}
+
+input[type=number],
+input[type=text] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: none;
+  border-top: 2px solid #CECECE;
+  border-radius: 3px;
+  font-size: 1.2em;
+  margin: 8px 0px;
+}
+
+input[type=submit] {
+	min-width: 120px;
+	padding: 6px;
+  background-color: #7FBE6F;
+  color: white;
+  border: none;
+  border-bottom: 2px solid #7D9755;
+  border-radius: 3px;
+  font-size: 1.2em;
+  margin: 8px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+footer {
+	margin: 20px 0px;
 }
