@@ -25,24 +25,26 @@
 	<main>
 		<h2 class="form-title">Buscar na API</h2>	
 
-		<form>
-			<div>
+		<form class="form-search">
+			<div class="form-group">
 				<label>Tag</label>
-				<input type="text" name="tag" placeholder="Javascript" />
+				<input type="text" name="tag" placeholder="Try Javascript" />
 			</div>
-			<div>
+			<div class="form-group">
 				<label>Limit</label>
 				<input type="number" name="limit" />
 			</div>
-			<div>
+			<div class="form-group">
 				<label>Score</label>
 				<input type="number" name="score" />
 			</div>
-			<div>
+			<div class="form-group">
 				<label>Sort</label>
 				<input type="text" name="sort" />
 			</div>
-			<input type="submit" name="search" value="Buscar" />
+			<div class="form-action">
+				<input class="form-button" type="submit" name="search" value="Buscar" />
+			</div>
 		</form>
 	</main>
 
