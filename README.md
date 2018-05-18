@@ -1,3 +1,5 @@
+# Challenge
+
 * Criar sua própria API GraphQL e
 * Uma aplicação web que mostra dados do StackOverflow.
 
@@ -16,3 +18,23 @@ A segunda parte do desafio consiste em implementar a seguinte interface:
 <img src="Imagem_Interface.png" alt="Drawing" style="width: 200px;" />
 
 Ao clicar em buscar, você deve consultar a API GraphQL que você implementou e mostrar os resultados abaixo, na mesma página, sem recarregá-la. Sua busca deve sempre trazer resultados para a tag 'Javascript'.
+
+# Notes
+
+## Servidores
+
+### HTTP
+'python simple-cors-http-server.py'
+
+### GrathQL
+'npm run dev:server'
+
+## Query Model
+{
+  questions(tag:"javascript", limit:2, score:0, sort:"votes") {
+    questionId,
+    title,
+    link,
+    score
+  }
+}
