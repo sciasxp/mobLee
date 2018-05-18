@@ -62,25 +62,25 @@ function query(form) {
 
 	console.log("inicio");
 
-	/*
 	var url = "http://localhost:4000/graphql?query=%7B%0A%20%20questions(tag%3A%22"+tag+"%22%2C%20limit%3A"+limit+"%2C%20score%3A"+score+"%2C%20sort%3A%22"+sort+"%22)%20%7B%0A%20%20%20%20questionId%2C%0A%20%20%20%20title%2C%0A%20%20%20%20link%2C%0A%20%20%20%20score%0A%20%20%7D%0A%7D";
 	var client = new HttpClient();
 	client.get(url, function(response) {
 		// do something with response
 		console.log(response);
 	});
-	*/
 
+	/*
 	var url = "http://localhost:4000/graphql";
 	var toSend = JSON.stringify("{questions(tag: \"javascipt\", sort: \"votes\", limit: 2, score: 0) {id,title,link,score}}");
 	var client = new HttpClient();
 	client.post(url, toSend, function(response) {
 		console.log(response);
 	});
+	*/
 }
 
 function validateForm(form) {
-	/*
+	
 	var tag = form["tag"].value;
 	if (tag == "") {
 		var input = form["tag"];
@@ -88,7 +88,6 @@ function validateForm(form) {
 
 		return false;
 	}
-	*/
 
 	query(form);
 }
