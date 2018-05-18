@@ -33,6 +33,7 @@ var HttpClient = function() {
 		anHttpRequest.responseType = "json";
 		anHttpRequest.open( "POST", aUrl, true );
 		anHttpRequest.setRequestHeader("Content-Type", "application/json");
+		anHttpRequest.setRequestHeader("Accept", "application/json");
 		anHttpRequest.send( aBody );
 	}
 };
