@@ -13,7 +13,8 @@ var HttpClient = function() {
 			console.log("onloadend - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
 		};
 
-		anHttpRequest.open( "GET", aUrl, true );            
+		anHttpRequest.open( "GET", aUrl, true );
+		anHttpRequest.withCredentials = true;       
 		anHttpRequest.send( null );
 	};
 	this.post = function(aUrl, aBody, aCallback) {
@@ -61,9 +62,7 @@ function query(form) {
 		sort = "votes";
 	}
 
-	console.log("inicio");
-
-	var url = "http://localhost:4000/graphql?query=%7B%0A%20%20questions(tag%3A%22"+tag+"%22%2C%20limit%3A"+limit+"%2C%20score%3A"+score+"%2C%20sort%3A%22"+sort+"%22)%20%7B%0A%20%20%20%20questionId%2C%0A%20%20%20%20title%2C%0A%20%20%20%20link%2C%0A%20%20%20%20score%0A%20%20%7D%0A%7D";
+	var url = "/README.md";//"http://localhost:4000/graphql?query=%7B%0A%20%20questions(tag%3A%22"+tag+"%22%2C%20limit%3A"+limit+"%2C%20score%3A"+score+"%2C%20sort%3A%22"+sort+"%22)%20%7B%0A%20%20%20%20questionId%2C%0A%20%20%20%20title%2C%0A%20%20%20%20link%2C%0A%20%20%20%20score%0A%20%20%7D%0A%7D";
 	var client = new HttpClient();
 	client.get(url, function(response) {
 		// do something with response
