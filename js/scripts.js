@@ -1,43 +1,50 @@
+function createListFrom(json) {
+	
+	console.log(json);
+
+	var data = json.parse(json);
+	console.log(data);
+	console.log(data.data);
+
+	var listDiv = document.getElementById('list-puntate');
+	var ul=document.createElement('ul');
+	
+	for (var i = 0; i < data.list.length; ++i) {
+		var li=document.createElement('li');
+		li.innerHTML = data.list[i].puntata;   // Use innerHTML to set the text
+		ul.appendChild(li);                                 
+	}
+	listDiv.appendChild(ul);    // Note here
+}
+
+function checkValueDefaut(value, defaultValue) {
+	if (value == "") {
+		return defaultValue;
+	}
+
+	return value;
+}
+
 function query() {
 
 	console.log("Query");	
 
 	var form = document.getElementsByClassName("form-search")[0];
 
-	var tag = form["tag"].value;
-	if (tag == "") {
-		tag = "javascript";
-	}
-	//tag += ', Javascript';
-
-	var limit = form["limit"].value;
-	if (limit == "") {
-		limit = 2;
-	}
-
-	var score = form["score"].value;
-	if (score == "") {
-		score = 0;
-	}
-
-	var sort = form["sort"].value;
-	if (sort == "") {
-		sort = "votes";
-	}
+	var tag = checkValueDefaut(form["tag"].value, "javascript");
+	var limit = checkValueDefaut(form["limit"].value, 2);
+	var score = checkValueDefaut(form["score"].value, 0);
+	var sort = checkValueDefaut(form["sort"].value, "votes");
 
 	var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open("POST", "http://localhost:4000/graphql");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("Accept", "application/json");
-    xhr.onload = function () {
-        console.log('data returned:', xhr.response);
-	}
 	xhr.onreadystatechange = function() { 
-		if (xhr.readyState == xhr.DONE && xhr.status == 200)
-			console.log("onreadystatechange - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
-		else
-			console.log("onreadystatechange - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
+		if (xhr.readyState == xhr.DONE && xhr.status == 200) {
+			createListFrom(xhr.response);
+		}
 	};
 	xhr.onerror = function() {
 		console.log("onerror - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
@@ -68,5 +75,4 @@ function validateForm(form) {
 	}
 
 	return true;
-	//return query(form);
 }
