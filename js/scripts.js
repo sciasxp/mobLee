@@ -1,49 +1,12 @@
-var HttpClient = function() {
-	this.get = function(aUrl, aCallback) {
+function query() {
 
-		var anHttpRequest = new XMLHttpRequest();
-		anHttpRequest.onreadystatechange = function() { 
-			if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-				aCallback(anHttpRequest.responseText);
-		};
-		anHttpRequest.onerror = function() {
-			console.log("onerror - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
-		};
-		anHttpRequest.onloadend = function() {
-			console.log("onloadend - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
-		};
+	console.log("Query");	
 
-		anHttpRequest.open( "GET", aUrl, true );
-		anHttpRequest.withCredentials = true;       
-		anHttpRequest.send( null );
-	};
-	this.post = function(aUrl, aBody, aCallback) {
-		
-		var anHttpRequest = new XMLHttpRequest();
-		anHttpRequest.onreadystatechange = function() { 
-			if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
-				aCallback(anHttpRequest.responseText);
-		};
-		anHttpRequest.onerror = function() {
-			console.log("onerror - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
-		};
-		anHttpRequest.onloadend = function() {
-			console.log("onloadend - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
-		};
-
-		anHttpRequest.responseType = "json";
-		anHttpRequest.open( "POST", aUrl, true );
-		anHttpRequest.setRequestHeader("Content-Type", "application/json");
-		anHttpRequest.setRequestHeader("Accept", "application/json");
-		anHttpRequest.send( aBody );
-	}
-};
-
-function query(form) {
+	var form = document.getElementsByClassName("form-search")[0];
 
 	var tag = form["tag"].value;
-	if (limit == "") {
-		limit = "javascript";
+	if (tag == "") {
+		tag = "javascript";
 	}
 	//tag += ', Javascript';
 
@@ -62,25 +25,40 @@ function query(form) {
 		sort = "votes";
 	}
 
-	var url = "/README.md";//"http://localhost:4000/graphql?query=%7B%0A%20%20questions(tag%3A%22"+tag+"%22%2C%20limit%3A"+limit+"%2C%20score%3A"+score+"%2C%20sort%3A%22"+sort+"%22)%20%7B%0A%20%20%20%20questionId%2C%0A%20%20%20%20title%2C%0A%20%20%20%20link%2C%0A%20%20%20%20score%0A%20%20%7D%0A%7D";
-	var client = new HttpClient();
-	client.get(url, function(response) {
-		// do something with response
-		console.log(response);
-	});
+	var xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+    xhr.open("POST", "http://localhost:4000/graphql");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.onload = function () {
+        console.log('data returned:', xhr.response);
+	}
+	xhr.onreadystatechange = function() { 
+		if (xhr.readyState == xhr.DONE && xhr.status == 200)
+			console.log("onreadystatechange - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
+		else
+			console.log("onreadystatechange - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
+	};
+	xhr.onerror = function() {
+		console.log("onerror - state: " + this.readyState + ", status: " + this.status + ", response: " + this.response);
+	};
+        
+	var query = 
+	`{ questions(tag: "${tag}", limit: ${limit}, score: ${score}, sort: "${sort}") {
+            questionId,
+            title,
+            link,
+            score
+        }
+    }`;
 
-	/*
-	var url = "http://localhost:4000/graphql";
-	var toSend = JSON.stringify("{questions(tag: \"javascipt\", sort: \"votes\", limit: 2, score: 0) {id,title,link,score}}");
-	var client = new HttpClient();
-	client.post(url, toSend, function(response) {
-		console.log(response);
-	});
-	*/
+    xhr.send(JSON.stringify({query: query}));
 }
 
 function validateForm(form) {
 	
+	console.log("Validate");
+
 	var tag = form["tag"].value;
 	if (tag == "") {
 		var input = form["tag"];
@@ -89,5 +67,6 @@ function validateForm(form) {
 		return false;
 	}
 
-	query(form);
+	return true;
+	//return query(form);
 }
