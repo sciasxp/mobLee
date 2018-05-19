@@ -2,19 +2,15 @@ function createListFrom(json) {
 	
 	console.log(json);
 
-	var data = json.parse(json);
-	console.log(data);
-	console.log(data.data);
-
-	var listDiv = document.getElementById('list-puntate');
-	var ul=document.createElement('ul');
+	var listDiv = document.getElementById('list-result');
+	var ul = document.createElement('ul');
 	
-	for (var i = 0; i < data.list.length; ++i) {
-		var li=document.createElement('li');
-		li.innerHTML = data.list[i].puntata;   // Use innerHTML to set the text
+	for (var i = 0; i < json.data.questions.length; ++i) {
+		var li = document.createElement('li');
+		li.innerHTML = json.data.questions[i].questionId + " | " + json.data.questions[i].title + " | " + json.data.questions[i].link + " | " + json.data.questions[i].score;
 		ul.appendChild(li);                                 
 	}
-	listDiv.appendChild(ul);    // Note here
+	listDiv.appendChild(ul);
 }
 
 function checkValueDefaut(value, defaultValue) {
