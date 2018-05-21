@@ -3,6 +3,7 @@ function createListFrom(json) {
 	console.log(json);
 
 	var listDiv = document.getElementById('list-result');
+	listDiv.innerHTML = '';
 	var ul = document.createElement('ul');
 	
 	for (var i = 0; i < json.data.questions.length; ++i) {
