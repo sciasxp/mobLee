@@ -57,16 +57,17 @@ const RootQuery = new GraphQLObjectType({
 				sort: {type:GraphQLString}
 			},
 			resolve(parentValue, args){
-				var relativeURL = '?sort='+args.sort+'&pagesize='+args.limit+'&site=stackoverflow&tagged='+args.tag+'&min='+args.score;
+				var relativeURL = '?pagesize='+args.limit+'&order=desc'+'&min='+args.score+'&sort='+args.sort+'&site=stackoverflow&tagged='+args.tag;
 				return axios.get(BASE_URL+relativeURL)
 					.then(res => res.data.items);
 					/*
 					.then(function(response) {
-         		console.log(response.data);
-      		}).catch(function(error) {
-         		console.log(error.response.data);
-      		});
-      		*/
+				 		console.log(response.data);
+      				}).catch(function(error) {
+						console.log(error.response.data);
+					});
+					*/
+      		
 			}
 		}
 	}

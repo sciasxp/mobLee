@@ -110,6 +110,29 @@ ul li:nth-child(even) {
 	background-color: #E6E6E6;
 }
 
+table {
+	color: #6F6F6F;
+	font-size: 	1.2em;
+	margin: 10px 0px;
+	width: 100%;
+}
+
+table tr:nth-child(odd) {
+	background-color: #E6E6E6;
+}
+
+table tr:first-child {
+	background-color: #7FBE6F;
+}
+
+.td-header {
+	font-weight: bolder;
+}
+
+table tr td {
+	padding: 10px;
+}
+
 footer {
 	margin: 20px 0px;
 	color: gray;

@@ -2,16 +2,78 @@ function createListFrom(json) {
 	
 	console.log(json);
 
-	var listDiv = document.getElementById('list-result');
-	listDiv.innerHTML = '';
-	var ul = document.createElement('ul');
+	var listDiv = document.getElementById("list-result");
+	listDiv.innerHTML = "";
+	var ul = document.createElement("ul");
 	
 	for (var i = 0; i < json.data.questions.length; ++i) {
-		var li = document.createElement('li');
+		var li = document.createElement("li");
 		li.innerHTML = json.data.questions[i].questionId + " | " + json.data.questions[i].title + " | " + json.data.questions[i].link + " | " + json.data.questions[i].score;
 		ul.appendChild(li);                                 
 	}
 	listDiv.appendChild(ul);
+}
+
+function createTableFrom(json) {
+
+	var tableDiv = document.getElementById("list-result");
+	tableDiv.innerHTML = "";
+
+	var table = document.createElement("table");
+	var tr = document.createElement("tr");
+
+	var td = document.createElement("td");
+	td.className = "td-header";
+	td.innerHTML = "Id";
+	tr.appendChild(td);
+
+	var td = document.createElement("td");
+	td.className = "td-header";
+	td.innerHTML = "Título";
+	tr.appendChild(td);
+
+	var td = document.createElement("td");
+	td.className = "td-header";
+	td.innerHTML = "Link";
+	tr.appendChild(td);
+
+	var td = document.createElement("td");
+	td.className = "td-header";
+	td.innerHTML = "Votos";
+	tr.appendChild(td);
+
+	table.appendChild(tr);
+
+	for (var i = 0; i < json.data.questions.length; ++i) {
+		
+		var tr = document.createElement("tr");
+
+		var td = document.createElement("td");
+		td.innerHTML = json.data.questions[i].questionId;
+		tr.appendChild(td);
+
+		var td = document.createElement("td");
+		td.innerHTML = json.data.questions[i].title;
+		tr.appendChild(td);
+
+		var td = document.createElement("td");
+		var a = document.createElement("a");
+		var linkText = document.createTextNode("link");
+		a.appendChild(linkText);
+		a.title = "link";
+		a.href = json.data.questions[i].link;
+		a.target = "_blank";
+		td.appendChild(a);
+		tr.appendChild(td);
+
+		var td = document.createElement("td");
+		td.innerHTML = json.data.questions[i].score;
+		tr.appendChild(td);
+
+		table.appendChild(tr);
+	}
+
+	tableDiv.appendChild(table);
 }
 
 function checkValueDefaut(value, defaultValue) {
@@ -31,7 +93,7 @@ function query() {
 	var tag = checkValueDefaut(form["tag"].value, "javascript");
 	var limit = checkValueDefaut(form["limit"].value, 2);
 	var score = checkValueDefaut(form["score"].value, 0);
-	var sort = checkValueDefaut(form["sort"].value, "votes");
+	var sort = checkValueDefaut(form["sort"].value, "activity");
 
 	//if (tag.toLowerCase() != "javascript") {
 	//	tag += ", javascript";
@@ -44,7 +106,8 @@ function query() {
     xhr.setRequestHeader("Accept", "application/json");
 	xhr.onreadystatechange = function() { 
 		if (xhr.readyState == xhr.DONE && xhr.status == 200) {
-			createListFrom(xhr.response);
+			// createListFrom(xhr.response);
+			createTableFrom(xhr.response);
 		}
 	};
 	xhr.onerror = function() {
@@ -58,8 +121,8 @@ function query() {
             link,
             score
         }
-    }`;
-
+	}`;
+	
     xhr.send(JSON.stringify({query: query}));
 }
 
