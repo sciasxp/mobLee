@@ -57,6 +57,18 @@ main {
 	box-sizing: border-box;
 }
 
+select {
+	width: 100%;
+	height: 35px;
+	padding: 4px;
+	border: none;
+	border-top: 2px solid #CECECE;
+	border-radius: 3px;
+	font-size: 1em;
+	margin: 8px 0px;
+	box-sizing: border-box;
+}
+
 .form-search .form-action {
 	float: right;
 	padding: 0px 10px;

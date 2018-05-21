@@ -25,7 +25,7 @@
 	<main>
 		<h2 class="form-title">Buscar na API</h2>	
 
-		<form class="form-search" onsubmit="return validateForm(this)" action="javascript:query()" >
+		<form class="form-search" id="form-stackoverflow" onsubmit="return validateForm(this)" action="javascript:query()" >
 			<div class="form-group">
 				<label>Tag</label>
 				<input type="text" name="tag" placeholder="Try Javascript" required=true />
@@ -40,7 +40,15 @@
 			</div>
 			<div class="form-group">
 				<label>Sort</label>
-				<input type="text" name="sort" />
+				<!--<input type="text" name="sort" />-->
+				<select name="sort" form="form-stackoverflow">
+						<option value="activity">Activity</option>
+						<option value="creation">Creation</option>
+						<option value="votes">Votes</option>
+						<option value="hot">Hot</option>
+						<option value="week">Week</option>
+						<option value="month">Month</option>
+				</select>
 			</div>
 			<div class="form-action">
 				<input class="form-button" type="submit" name="search" value="Buscar" />
