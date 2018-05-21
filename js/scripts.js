@@ -33,6 +33,10 @@ function query() {
 	var score = checkValueDefaut(form["score"].value, 0);
 	var sort = checkValueDefaut(form["sort"].value, "votes");
 
+	//if (tag.toLowerCase() != "javascript") {
+	//	tag += ", javascript";
+	//}
+
 	var xhr = new XMLHttpRequest();
     xhr.responseType = 'json';
     xhr.open("POST", "http://localhost:4000/graphql");
