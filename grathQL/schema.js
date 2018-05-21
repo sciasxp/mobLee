@@ -40,10 +40,7 @@ const QuestionType = new GraphQLObjectType({
 		},
 		link: {type: GraphQLString},
 		score: {type: GraphQLInt},
-		//owner: {
-		//	type: GraphQLObjectType,
-		//	resolve: user => user.owner
-		//}
+		owner: {type: UserType}
 	})
 });
 
@@ -60,7 +57,7 @@ const RootQuery = new GraphQLObjectType({
 				sort: {type:GraphQLString}
 			},
 			resolve(parentValue, args){
-				var relativeURL = '?sort='+args.sort+'&pagesize='+args.limit+'&site=stackoverflow&tagged='+args.tag;
+				var relativeURL = '?sort='+args.sort+'&pagesize='+args.limit+'&site=stackoverflow&tagged='+args.tag+'&min='+args.score;
 				return axios.get(BASE_URL+relativeURL)
 					.then(res => res.data.items);
 					/*
