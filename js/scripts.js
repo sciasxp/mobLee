@@ -73,6 +73,8 @@ function createTableFrom(json) {
 		table.appendChild(tr);
 	}
 
+	var spinner = document.getElementsByClassName("spinner")[0];
+	spinner.style.display = "none";
 	tableDiv.appendChild(table);
 }
 
@@ -86,7 +88,10 @@ function checkValueDefaut(value, defaultValue) {
 
 function query() {
 
-	console.log("Query");	
+	console.log("Query");
+	
+	var spinner = document.getElementsByClassName("spinner")[0];
+	spinner.style.display = "block";
 
 	var form = document.getElementsByClassName("form-search")[0];
 
